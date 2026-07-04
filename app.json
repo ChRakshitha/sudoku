@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Sudoku Journey",
+    "slug": "sudoku-journey",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.sudokujourney.app"
+    },
+    "android": {
+      "package": "com.sudokujourney.app"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}
