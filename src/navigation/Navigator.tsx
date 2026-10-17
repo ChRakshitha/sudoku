@@ -5,7 +5,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../theme/ThemeContext';
 import type { RootStackParamList, MainTabParamList } from '../types/navigation';
 
-import HomeScreen from '../screens/HomeScreen';
+// Home tab removed (redundant with Play); screen code kept in HomeScreen.tsx.
+// import HomeScreen from '../screens/HomeScreen';
 import PlayScreen from '../screens/PlayScreen';
 import ProgressScreen from '../screens/ProgressScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -38,7 +39,7 @@ function MainTabs() {
         },
         tabBarIcon: ({ color, size, focused }) => {
           const icons: Record<string, { outline: string; filled: string }> = {
-            Home: { outline: 'home-outline', filled: 'home' },
+            // Home: { outline: 'home-outline', filled: 'home' },
             Play: { outline: 'grid-outline', filled: 'grid' },
             Progress: { outline: 'bar-chart-outline', filled: 'bar-chart' },
             Profile: { outline: 'person-outline', filled: 'person' },
@@ -49,7 +50,7 @@ function MainTabs() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: 'Home' }} />
+      {/* <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: 'Home' }} /> */}
       <Tab.Screen name="Play" component={PlayScreen} options={{ tabBarLabel: 'Play' }} />
       <Tab.Screen name="Progress" component={ProgressScreen} options={{ tabBarLabel: 'Progress' }} />
       <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile' }} />

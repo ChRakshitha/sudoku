@@ -45,6 +45,25 @@ function cloneNotes(n: Notes): Notes {
   return n.map(row => row.map(cell => new Set(cell)));
 }
 
+// True when every cell whose solution is `num` holds `num` on the board.
+function isNumberSolved(num: number, board: Board, solution: Board): boolean {
+  for (let r = 0; r < 9; r++) {
+    for (let c = 0; c < 9; c++) {
+      if (solution[r][c] === num && board[r][c] !== num) return false;
+    }
+  }
+  return true;
+}
+
+// The next unsolved number after `num`, wrapping 9 → 1; null if none remain.
+function nextUnsolvedNumber(num: number, board: Board, solution: Board): number | null {
+  for (let i = 1; i < 9; i++) {
+    const candidate = ((num - 1 + i) % 9) + 1;
+    if (!isNumberSolved(candidate, board, solution)) return candidate;
+  }
+  return null;
+}
+
 export const useGameStore = create<GameState>((set, get) => ({
   config: null,
   board: [],
@@ -112,12 +131,20 @@ export const useGameStore = create<GameState>((set, get) => ({
     // Check completion
     const completed = isBoardComplete(newBoard, config.solution);
 
+    // A number locked in via long-press advances to the next unsolved
+    // number once all of its cells are correctly filled.
+    let { pendingNumber } = get();
+    if (pendingNumber === num && isNumberSolved(num, newBoard, config.solution)) {
+      pendingNumber = completed ? null : nextUnsolvedNumber(num, newBoard, config.solution);
+    }
+
     set({
       board: newBoard,
       notes: newNotes,
       mistakes: newMistakes,
       history: [...history, snapshot],
       status: completed ? 'completed' : 'playing',
+      pendingNumber,
     });
   },
 

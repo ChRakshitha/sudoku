@@ -139,7 +139,7 @@ export default function ProfileScreen() {
         </View>
 
         {/* Achievements */}
-        <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+        {/* <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
           <View style={styles.cardHeader}>
             <Text style={[styles.cardTitle, { color: colors.textPrimary }]}>Achievements</Text>
             <Text style={[styles.cardCount, { color: colors.textSecondary }]}>
@@ -161,7 +161,7 @@ export default function ProfileScreen() {
                   ]}
                 >
                   <Ionicons
-                    name={(a.icon as any) ?? 'star'}
+                    name={a.icon}
                     size={22}
                     color={unlocked ? colors.primary : colors.textTertiary}
                   />
@@ -178,7 +178,7 @@ export default function ProfileScreen() {
               );
             })}
           </View>
-        </View>
+        </View> */}
 
         {/* Settings */}
         {/* <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
@@ -211,13 +211,13 @@ export default function ProfileScreen() {
         </View> */}
 
         {/* Danger zone */}
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={handleResetProgress}
           style={[styles.resetBtn, { borderColor: colors.error }]}
         >
           <Ionicons name="trash-outline" size={18} color={colors.error} />
           <Text style={[styles.resetText, { color: colors.error }]}>Reset All Progress</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </ScrollView>
     </SafeAreaView>
   );

@@ -28,7 +28,12 @@ export default function NumberPad() {
 
   const handlePress = (num: number) => {
     triggerImpact();
-    if (pendingNumber !== null) setPendingNumber(null);
+    // While a number is locked in, tapping the pad switches the lock to the
+    // tapped number (tapping the locked number itself unlocks it).
+    if (pendingNumber !== null) {
+      setPendingNumber(num);
+      return;
+    }
     enterNumber(num);
   };
 

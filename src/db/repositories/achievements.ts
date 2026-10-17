@@ -9,14 +9,14 @@ export const ACHIEVEMENT_DEFS: AchievementDef[] = [
   { id: 'puzzles_10', title: 'Getting Started', description: 'Solve 10 puzzles', icon: 'grid', target: 10 },
   { id: 'puzzles_50', title: 'Dedicated', description: 'Solve 50 puzzles', icon: 'grid', target: 50 },
   { id: 'puzzles_100', title: 'Centurion', description: 'Solve 100 puzzles', icon: 'grid', target: 100 },
-  { id: 'first_expert', title: 'Expert Initiation', description: 'Complete an Expert puzzle', icon: 'brain', target: 1 },
-  { id: 'perfect_solve', title: 'Perfectionist', description: 'Complete a puzzle without any mistakes', icon: 'check-circle', target: 1 },
-  { id: 'perfect_3', title: 'Perfect Streak', description: 'Complete 3 puzzles in a row without mistakes', icon: 'check-circle', target: 3 },
+  { id: 'first_expert', title: 'Expert Initiation', description: 'Complete an Expert puzzle', icon: 'bulb', target: 1 },
+  { id: 'perfect_solve', title: 'Perfectionist', description: 'Complete a puzzle without any mistakes', icon: 'checkmark-circle', target: 1 },
+  { id: 'perfect_3', title: 'Perfect Streak', description: 'Complete 3 puzzles in a row without mistakes', icon: 'checkmark-circle', target: 3 },
   { id: 'rating_1100', title: 'Rising', description: 'Reach a rating of 1100', icon: 'trending-up', target: 1100 },
   { id: 'rating_1250', title: 'Advanced', description: 'Reach a rating of 1250', icon: 'trending-up', target: 1250 },
-  { id: 'rating_1500', title: 'Grand Master', description: 'Reach a rating of 1500', icon: 'award', target: 1500 },
-  { id: 'focus_60', title: 'Focused', description: 'Accumulate 60 minutes of focus time', icon: 'clock', target: 60 },
-  { id: 'focus_500', title: 'Deep Focus', description: 'Accumulate 500 minutes of focus time', icon: 'clock', target: 500 },
+  { id: 'rating_1500', title: 'Grand Master', description: 'Reach a rating of 1500', icon: 'ribbon', target: 1500 },
+  { id: 'focus_60', title: 'Focused', description: 'Accumulate 60 minutes of focus time', icon: 'time', target: 60 },
+  { id: 'focus_500', title: 'Deep Focus', description: 'Accumulate 500 minutes of focus time', icon: 'time', target: 500 },
 ];
 
 interface AchievementRow {

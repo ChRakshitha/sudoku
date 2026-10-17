@@ -7,9 +7,10 @@ import { useGameStore } from '../../store/gameStore';
 import { useAppStore } from '../../store/appStore';
 import { spendHint } from '../../db/repositories/profile';
 import { triggerImpact } from '../../utils/haptics';
+import type { IoniconName } from '../../types';
 
 interface ControlItem {
-  icon: string;
+  icon: IoniconName;
   label: string;
   action: () => void;
   isActive?: boolean;
@@ -92,7 +93,7 @@ export default function GameControls() {
             ]}
           >
             <Ionicons
-              name={ctrl.icon as any}
+              name={ctrl.icon}
               size={22}
               color={ctrl.isActive ? colors.primary : colors.textSecondary}
             />

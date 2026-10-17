@@ -5,7 +5,7 @@ import SudokuCell from './SudokuCell';
 import { useGameStore } from '../../store/gameStore';
 import { triggerSelection } from '../../utils/haptics';
 
-const BOARD_PADDING = 16;
+const BOARD_PADDING = 8;
 const THIN = 0.5;
 const THICK = 2;
 
@@ -25,7 +25,7 @@ function SudokuBoard({ showErrors }: { showErrors: boolean }) {
   if (!config) return null;
 
   const screenWidth = Dimensions.get('window').width;
-  const boardSize = Math.min(screenWidth - BOARD_PADDING * 2, 400);
+  const boardSize = Math.min(screenWidth - BOARD_PADDING * 2, 460);
   // Border is drawn inside the box (border-box sizing), so cells must fill
   // the content area (boardSize minus the outer border on both sides), not
   // the full boardSize, or the last row/column overflow past the border.
@@ -60,9 +60,13 @@ function SudokuBoard({ showErrors }: { showErrors: boolean }) {
     );
   };
 
+  // A number locked in via long-press on the pad takes priority, so its
+  // existing placements stay visible while filling in more of them.
+  const highlightValue = pendingNumber ?? selectedValue;
+
   const isSameNumber = (row: number, col: number): boolean => {
-    if (!selectedValue || selectedValue === 0) return false;
-    return board[row][col] === selectedValue;
+    if (!highlightValue) return false;
+    return board[row][col] === highlightValue;
   };
 
   const isError = (row: number, col: number): boolean => {

@@ -5,7 +5,8 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
-    "ios": "expo start --ios"
+    "ios": "expo start --ios",
+    "eas-build-post-install": "bash scripts/prefetch-sqlite.sh"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
@@ -18,6 +19,8 @@
     "expo-sharing": "~12.0.1",
     "expo-sqlite": "~14.0.6",
     "expo-status-bar": "~1.12.1",
+    "expo-system-ui": "~3.0.7",
+    "expo-updates": "~0.25.28",
     "react": "18.2.0",
     "react-native": "0.74.5",
     "react-native-reanimated": "~3.10.1",

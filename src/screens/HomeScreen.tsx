@@ -65,7 +65,7 @@ export default function HomeScreen() {
             </Text>
           </View>
           <View style={[styles.ratingBadge, { backgroundColor: colors.primaryLight }]}>
-            <Text style={[styles.ratingText, { color: colors.primary }]}>
+            <Text style={[styles.greeting, { color: colors.primary }]}>
               {profile?.rating ?? 1000}
             </Text>
             <Text style={[styles.ratingLabel, { color: colors.primary }]}>pts</Text>
@@ -79,7 +79,7 @@ export default function HomeScreen() {
         />
 
         {/* Today's Status */}
-        <View
+        {/* <View
           style={[
             styles.statusCard,
             {
@@ -108,25 +108,41 @@ export default function HomeScreen() {
               {dailyDifficulty.charAt(0).toUpperCase() + dailyDifficulty.slice(1)}
             </Text>
           </View>
-        </View>
+        </View> */}
 
         {/* Quick Start */}
         <TouchableOpacity
           onPress={handleDailyPuzzle}
           activeOpacity={0.85}
-          style={[styles.ctaButton, { backgroundColor: colors.primary }]}
+          style={[styles.statusCard, { backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1 }]}
         >
-          <Ionicons name="play-circle" size={22} color="#fff" />
-          <Text style={styles.ctaText}>
-            {dailyCompleted ? 'Play Daily Again' : 'Start Daily Puzzle'}
-          </Text>
+          <View style={styles.statusLeft}>
+            <Ionicons
+              name={dailyCompleted ? 'checkmark-circle' : 'today-outline'}
+              size={24}
+              color={dailyCompleted ? colors.success : colors.textSecondary}
+            />
+            <View>
+              <Text style={[styles.statusTitle, { color: colors.textPrimary }]}>
+                Daily Puzzle
+              </Text>
+              <Text style={[styles.statusSub, { color: dailyCompleted ? colors.success : colors.textSecondary }]}>
+                {dailyCompleted ? 'Completed today!' : 'Not yet completed'}
+              </Text>
+            </View>
+          </View>
+          <View style={[styles.diffBadge, { backgroundColor: `${diffColor}20` }]}>
+            <Text style={[styles.diffText, { color: diffColor }]}>
+              {dailyDifficulty.charAt(0).toUpperCase() + dailyDifficulty.slice(1)}
+            </Text>
+          </View>
         </TouchableOpacity>
 
         {/* Journey Progress */}
-        <JourneyProgress totalSolved={totalSolved} rating={profile?.rating ?? 1000} />
+        {/* <JourneyProgress totalSolved={totalSolved} rating={profile?.rating ?? 1000} /> */}
 
         {/* Recent Record */}
-        {recentRecord && (
+        {/* {recentRecord && (
           <View style={[styles.recordCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             <View style={[styles.trophyWrap, { backgroundColor: colors.streakBg }]}>
               <Text style={{ fontSize: 20 }}>🏆</Text>
@@ -141,7 +157,7 @@ export default function HomeScreen() {
               {recentRecord.value}
             </Text>
           </View>
-        )}
+        )} */}
 
         {/* Stats row */}
         <View style={styles.statsRow}>

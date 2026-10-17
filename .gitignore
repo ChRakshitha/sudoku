@@ -5,7 +5,6 @@ node_modules/
 .expo/
 dist/
 web-build/
-expo-env.d.ts
 
 # Native
 *.orig.*
@@ -43,3 +42,9 @@ yarn-error.*
 # Editor
 .vscode/
 .idea/
+
+# Build artifacts
+builds/
+*.aab
+*.apk
+__pycache__/

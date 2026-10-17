@@ -1,0 +1,36 @@
+{
+  "cli": {
+    "version": ">= 24.8.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development",
+      "env": {
+        "REACT_NATIVE_DOWNLOADS_DIR": "/home/expo/rn-downloads"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "channel": "preview",
+      "env": {
+        "REACT_NATIVE_DOWNLOADS_DIR": "/home/expo/rn-downloads"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "channel": "production",
+      "env": {
+        "REACT_NATIVE_DOWNLOADS_DIR": "/home/expo/rn-downloads"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

@@ -54,11 +54,11 @@ function SudokuCell({
       {value !== 0 ? (
         <Text
           style={[
-            styles.value,
+            styles.value, 
             {
               fontSize,
               color: getTextColor(),
-              fontWeight: isGiven ? typography.weights.bold : typography.weights.medium,
+              fontWeight: isGiven ? typography.weights.semibold : typography.weights.medium,
             },
           ]}
         >
@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
   note: {
     width: '33.33%',
     textAlign: 'center',
-    lineHeight: 11,
   },
 });
 

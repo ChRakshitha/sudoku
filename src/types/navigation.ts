@@ -12,14 +12,14 @@ export type RootStackParamList = {
 };
 
 export type MainTabParamList = {
-  Home: undefined;
+  // Home: undefined; // Home tab removed; see Navigator.tsx
   Play: undefined;
   Progress: undefined;
   Profile: undefined;
 };
 
 export type GameScreenProps = NativeStackScreenProps<RootStackParamList, 'Game'>;
-export type HomeScreenProps = BottomTabScreenProps<MainTabParamList, 'Home'> & NativeStackScreenProps<RootStackParamList, 'MainTabs'>;
+// export type HomeScreenProps = BottomTabScreenProps<MainTabParamList, 'Home'> & NativeStackScreenProps<RootStackParamList, 'MainTabs'>;
 export type PlayScreenProps = BottomTabScreenProps<MainTabParamList, 'Play'> & NativeStackScreenProps<RootStackParamList, 'MainTabs'>;
 export type ProgressScreenProps = BottomTabScreenProps<MainTabParamList, 'Progress'>;
 export type ProfileScreenProps = BottomTabScreenProps<MainTabParamList, 'Profile'>;

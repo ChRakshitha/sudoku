@@ -79,10 +79,10 @@ export function getEstimatedTime(difficulty: Difficulty): string {
 
 export function getDifficultyColor(difficulty: Difficulty): string {
   const colors: Record<Difficulty, string> = {
-    easy: '#10B981',
-    medium: '#F59E0B',
-    hard: '#EF4444',
-    expert: '#8B5CF6',
+    easy: '#A3A3A3',
+    medium: '#737373',
+    hard: '#404040',
+    expert: '#0A0A0A',
   };
   return colors[difficulty];
 }

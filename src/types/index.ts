@@ -1,3 +1,8 @@
+import type { ComponentProps } from 'react';
+import type { Ionicons } from '@expo/vector-icons';
+
+export type IoniconName = ComponentProps<typeof Ionicons>['name'];
+
 export type Difficulty = 'easy' | 'medium' | 'hard' | 'expert';
 export type GameStatus = 'playing' | 'paused' | 'completed';
 
@@ -59,7 +64,7 @@ export interface AchievementDef {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  icon: IoniconName;
   target: number;
 }
 

@@ -9,11 +9,12 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTheme } from '../theme/ThemeContext';
 import { typography, spacing, radii } from '../theme/tokens';
 import DifficultyCard from '../components/ui/DifficultyCard';
+import { useAppStore } from '../store/appStore';
 import { getPersonalRecords } from '../db/repositories/records';
 import { getSolvedCountByDifficulty } from '../db/repositories/puzzles';
 import { getDailyPuzzleId, getDailyDifficulty, getTodayString } from '../engine/dailyPuzzle';
@@ -30,6 +31,10 @@ export default function PlayScreen() {
   const { colors } = useTheme();
   const navigation = useNavigation<Nav>();
   const [loading, setLoading] = useState<Difficulty | null>(null);
+  const { profile, streaks } = useAppStore(s => ({ profile: s.profile, streaks: s.streaks }));
+  // Stats below are read straight from the DB during render; re-render on
+  // focus so returning from a finished game shows the updated counts.
+  useIsFocused();
 
   const records = getPersonalRecords();
   const counts = getSolvedCountByDifficulty();
@@ -78,7 +83,28 @@ export default function PlayScreen() {
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={[styles.screenTitle, { color: colors.textPrimary }]}>Play</Text>
+        <View style={styles.header}>
+          <View style={styles.headerText}>
+            <Text style={[styles.greeting, { color: colors.textSecondary }]}>Good day,</Text>
+            <Text style={[styles.name, { color: colors.textPrimary }]} numberOfLines={1}>
+              {profile?.name ?? 'Solver'}
+            </Text>
+          </View>
+          <View style={styles.headerStats}>
+            <View style={[styles.statPill, { backgroundColor: colors.primaryLight }]}>
+              <Ionicons name="flame" size={16} color={colors.streak} />
+              <Text style={[styles.statValue, { color: colors.textPrimary }]}>
+                {streaks.currentStreak}
+              </Text>
+            </View>
+            <View style={[styles.statPill, { backgroundColor: colors.primaryLight }]}>
+              <Text style={[styles.statValue, { color: colors.textPrimary }]}>
+                {profile?.rating ?? 1000}
+              </Text>
+              <Text style={[styles.statUnit, { color: colors.textSecondary }]}>pts</Text>
+            </View>
+          </View>
+        </View>
 
         {/* Daily Puzzle Section */}
         <View>
@@ -172,10 +198,43 @@ const styles = StyleSheet.create({
     gap: spacing.lg,
     paddingBottom: spacing['4xl'],
   },
-  screenTitle: {
-    fontSize: typography.sizes['3xl'],
-    fontWeight: typography.weights.bold,
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: spacing.xs,
+  },
+  headerText: {
+    flex: 1,
+    marginRight: spacing.md,
+  },
+  greeting: {
+    fontSize: typography.sizes.sm,
+    fontWeight: typography.weights.medium,
+  },
+  name: {
+    fontSize: typography.sizes['2xl'],
+    fontWeight: typography.weights.bold,
+  },
+  headerStats: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  statPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs + 2,
+    borderRadius: radii.full,
+  },
+  statValue: {
+    fontSize: typography.sizes.md,
+    fontWeight: typography.weights.bold,
+  },
+  statUnit: {
+    fontSize: typography.sizes.xs,
+    fontWeight: typography.weights.semibold,
   },
   sectionLabel: {
     fontSize: typography.sizes.sm,
